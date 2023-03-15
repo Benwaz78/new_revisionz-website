@@ -1,0 +1,37 @@
+{% extends 'design/base.html' %}
+
+{% block title %}
+Services
+{% endblock %}
+
+{% block content %}
+<section id="sectionTitle">
+  <div class="pageTitle">
+    <h1>Services</h1>
+  </div>
+</section>
+<!-- END OF PAGE TITLE -->
+<section id="content">
+  <div class="row">
+    <div class="col-sm-9 text-center" id="mainContent">
+      <div class="row">
+        {% if srv %}
+          {% for s in srv %}
+            <div class="col-sm-4">
+              {% if s.icon %}
+                  {{ s.icon.as_html }}
+              {% endif %}
+              <h1>{{ s.title }}</h1>
+               {{ s.content|safe }}
+              <a href="#" class="btn btn-primary">Readmore</a>
+            </div>
+          {% endfor %}
+        {% endif %}
+       
+      </div>
+    </div>
+    {% include 'design/sidebar.html' %}
+
+  </div>
+</section>
+{% endblock %}

@@ -15,6 +15,9 @@ from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+TEMPLATE_DIR = BASE_DIR / 'templates'
+STATIC_DIR = BASE_DIR / 'static'
+STATICFILES_DIRS = [STATIC_DIR,]
 AUTH_USER_MODEL = 'blog_app.CustomUser'
 
 CLOUDINARY_STORAGE = {
@@ -32,7 +35,7 @@ TINYMCE_DEFAULT_CONFIG = {
     "menubar": "file edit view insert format tools table help",
     "plugins": "advlist autolink lists link image charmap print preview anchor searchreplace visualblocks code "
     "fullscreen insertdatetime media table paste code help wordcount spellchecker",
-    "toolbar": "undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft "
+    "toolbar": "undo redo | forecolor | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft "
     "aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor "
     "backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | "
     "fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | "
@@ -41,7 +44,6 @@ TINYMCE_DEFAULT_CONFIG = {
     "language": "en",  # To force a specific language instead of the Django current language.
 }
 TINYMCE_SPELLCHECKER = True
-TINYMCE_COMPRESSOR = True
 
 
 # Quick-start development settings - unsuitable for production
@@ -69,6 +71,7 @@ INSTALLED_APPS = [
     'cloudinary',
     'blog_app',
     'tinymce',
+    'fontawesome_5',
 ]
 
 MIDDLEWARE = [
@@ -86,7 +89,7 @@ ROOT_URLCONF = 'revision_website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR,],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

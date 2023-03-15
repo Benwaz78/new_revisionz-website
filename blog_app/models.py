@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from tinymce import models as tinymce_models
+from fontawesome_5.fields import IconField
 from django.conf import settings
 
 
@@ -20,6 +21,10 @@ class AboutUs(models.Model):
     class Meta():
         verbose_name_plural = 'About Us'
 
+    def img_url(self):
+        if self.profile:
+            return self.profile.url
+
 
 class Category(models.Model):
     cat_name = models.CharField(max_length=100, unique=True, verbose_name='Category Name', blank=True, null=True, )
@@ -34,9 +39,9 @@ class Category(models.Model):
 
 
 class Post(models.Model):
-    pst_title = models.CharField(max_length=250)
+    pst_title = models.CharField(max_length=250, verbose_name='Post Title')
     slug = models.SlugField(unique=True, max_length=250)
-    pst_image = models.ImageField(upload_to='uploads/', blank=True, null=True)
+    pst_image = models.ImageField(upload_to='uploads/', blank=True, null=True, verbose_name='Post Image')
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     category = models.ManyToManyField(Category)
     content = tinymce_models.HTMLField('Content', blank=True, null=True)
@@ -68,3 +73,16 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Comment {} by {}'.format(self.body, self.name)
+    
+
+class ServiceModel(models.Model):
+    title = models.CharField(max_length=150)
+    icon = IconField(blank=True, null=True)
+    content = tinymce_models.HTMLField('Content', blank=True, null=True)
+
+    class Meta():
+        verbose_name_plural = 'Service'
+
+    def __str__(self):
+        return self.title
+

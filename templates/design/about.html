@@ -1,0 +1,62 @@
+{% extends 'design/base.html' %}
+{% block title %}
+About
+{% endblock %}
+
+{% block content %}
+<section id="sectionTitle">
+  <div class="pageTitle">
+    <h1>About Us</h1>
+  </div>
+</section>
+<!-- END OF PAGE TITLE -->
+<section id="content">
+  <div class="row">
+    <div class="col-sm-9 text-center" id="mainContent">
+      <div class="row">
+        {% if abt %}
+          {% for f in abt %}
+            <div class="col-sm-4">
+              <a href="detail.html">
+                  <img src="{{ f.img_url }}" class="img-circle">
+              </a>
+              <h2>{{ f.title }}</h2>
+              <a href="#" class="btn btn-primary">Readmore</a>
+            </div>
+          {% endfor %}
+        {% endif %}
+        
+      </div>
+      <div class="row">
+        <div class="col-sm-12 text-left">
+          <h3>Operating Staff</h3>
+          <table class="table">
+            <tr>
+              <th>Firstname</th>
+              <th>Lastname</th>
+              <th>Email</th>
+            </tr>
+            <tr>
+              <td>John</td>
+              <td>Doe</td>
+              <td>john.doe@email.com</td>
+            </tr>
+             <tr>
+              <td>Slim</td>
+              <td>Brim</td>
+              <td>slim.brin@email.com</td>
+            </tr>
+             <tr>
+              <td>Kashamawu</td>
+              <td>Idris</td>
+              <td>kashamawu.idris@email.com</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    {% include 'design/sidebar.html' %}
+  </div>
+</section>
+
+{% endblock %}

@@ -17,11 +17,11 @@ About
         {% if abt %}
           {% for f in abt %}
             <div class="col-sm-4">
-              <a href="detail.html">
+              <a href="{% url 'about_detail' f.id %}">
                   <img src="{{ f.img_url }}" class="img-circle">
               </a>
               <h2>{{ f.title }}</h2>
-              <a href="#" class="btn btn-primary">Readmore</a>
+              <a href="{% url 'about_detail' f.id %}" class="btn btn-primary">Readmore</a>
             </div>
           {% endfor %}
         {% endif %}
